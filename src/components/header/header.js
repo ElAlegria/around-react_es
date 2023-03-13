@@ -2,7 +2,7 @@ import headerLogo from '../../images/logo.png';
 
 function AppHeader() {
   return (
-    <div>
+    <>
       <header className="header">
         <img
           src={headerLogo}
@@ -10,7 +10,7 @@ function AppHeader() {
           className="header__logo"
         />
       </header>
-    </div>
+    </>
   );
 }
 export default AppHeader;

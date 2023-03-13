@@ -1,7 +1,7 @@
 function EditAvatar() {
   return (
-    <div>
-      <section className="popup popup_image_profile">
+    <>
+      <section className="popup popup_image_profile ">
         <div className="popup__container">
           <button
             type="button"
@@ -15,20 +15,7 @@ function EditAvatar() {
             name="image"
             novalidate
           >
-            <label className="popup__field" for="popup-input-image">
-              <input
-                type="url"
-                name="image-link"
-                placeholder="Imagen URL"
-                id="popup-input-image"
-                className="popup__input"
-                value
-                required
-              />
-              <span className="popup__error popup-input-image-error">
-                Introduce una dirección web.
-              </span>
-            </label>
+   
             <button
               type="submit"
               className="popup__button popup__button_type_profile-image"
@@ -40,6 +27,8 @@ function EditAvatar() {
           </form>
         </div>
       </section>
-    </div>
+    </>
   );
 }
+
+export default EditAvatar

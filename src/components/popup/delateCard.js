@@ -1,6 +1,6 @@
 function DelateCard() {
   return (
-    <div>
+    <>
       <section class="popup popup_delete_card">
         <div class="popup__container">
           <button
@@ -21,6 +21,6 @@ function DelateCard() {
           </form>
         </div>
       </section>
-    </div>
+    </>
   );
 }
