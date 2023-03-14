@@ -1,8 +1,9 @@
 import React from "react";
 import Footer from "./components/footer.js";
-import AppHeader from "./components/header/header.js";
+import Header from "./components/header/header.js";
 import Main from "./components/main.js";
 import Popup from "./components/popup.js";
+import Cards from "./components/cards.js";
 
 import PopupWithForm from "./components/popupWhithForm.js";
 function App() {
@@ -12,6 +13,9 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
   const [isDelateCardOpen, setIsDelateCardOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState("");
+  const [eraseCardAsk, setEraseCardAsk] = React.useState(false);
+
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
   }
@@ -20,6 +24,13 @@ function App() {
   }
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
+  }
+  function handleClickCard(){
+    setSelectedCard(Cards)
+
+  }
+  function handleEraseAsk(){
+    setEraseCardAsk(true)
   }
   function handleTrashCardClick() {
     setIsDelateCardOpen(true);
@@ -33,12 +44,15 @@ function App() {
 
   return (
     <div className="page">
-      <AppHeader />
+      <Header />
       <Main
         onEditAvatarPopupOpen={handleEditAvatarClick}
         onEditProfilePopupOpen={handleEditProfileClick}
         onAddPlacePopupOpen={handleAddPlaceClick}
+        onCardClick={handleClickCard}
+        onDelateAsk={handleEraseAsk}
       />
+       <Footer />
       <Popup isOpen={isEditProfilePopupOpen}>
         <PopupWithForm
           name="Edit__profile"
@@ -146,7 +160,6 @@ function App() {
         isCLose={ClosePopups}>
         </PopupWithForm>
       </Popup> */}
-      <Footer />
     </div>
   );
 }

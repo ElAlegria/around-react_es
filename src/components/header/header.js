@@ -1,6 +1,6 @@
 import headerLogo from '../../images/logo.png';
 
-function AppHeader() {
+function Header() {
   return (
     <>
       <header className="header">
@@ -13,4 +13,4 @@ function AppHeader() {
     </>
   );
 }
-export default AppHeader;
+export default Header;
