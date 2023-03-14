@@ -11,7 +11,7 @@ function Cards(props) {
     onDeleteCardAsk,
   } = props;
 
-  function handleClick() {
+  function handleClickCard() {
     props.onCardClick(props);
   }
 
@@ -20,14 +20,14 @@ function Cards(props) {
       <button
         type="button"
         className="card__delete-button"
-        aria-label="trash button"
+        aria-label="trash"
         onClick={onDeleteCardAsk}
       ></button>
       <img
         className="card__image"
         src={link}
         alt={cardName}
-        onClick={handleClick}
+        onClick={handleClickCard}
       />
       <div className="card__information">
         <h2 className="card__title">{cardName}</h2>

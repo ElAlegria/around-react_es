@@ -6,15 +6,18 @@ import Popup from "./components/popup.js";
 import Cards from "./components/cards.js";
 
 import PopupWithForm from "./components/popupWhithForm.js";
+import ImagePopup from "./components/imagePopup.js";
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
     React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
-  const [isDelateCardOpen, setIsDelateCardOpen] = React.useState(false);
+  // const [isDelateCardOpen, setIsDelateCardOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState("");
   const [eraseCardAsk, setEraseCardAsk] = React.useState(false);
+  const [imagePic, setImagePic] = React.useState(false);
+
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -25,21 +28,24 @@ function App() {
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
   }
-  function handleClickCard(){
-    setSelectedCard(Cards)
-
+  function handleClickCard(card) {
+    setSelectedCard(card);
+    setImagePic(true)
   }
-  function handleEraseAsk(){
-    setEraseCardAsk(true)
+  function handleEraseAsk() {
+    setEraseCardAsk(true);
   }
-  function handleTrashCardClick() {
-    setIsDelateCardOpen(true);
-  }
+  // function handleTrashCardClick() {
+  //   setIsDelateCardOpen(true);
+  // }
   function ClosePopups() {
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
-    setIsDelateCardOpen(false);
+    // setIsDelateCardOpen(false);
+    setEraseCardAsk(false)
+    setSelectedCard('')
+    setImagePic(false)
   }
 
   return (
@@ -52,7 +58,7 @@ function App() {
         onCardClick={handleClickCard}
         onDelateAsk={handleEraseAsk}
       />
-       <Footer />
+      <Footer />
       <Popup isOpen={isEditProfilePopupOpen}>
         <PopupWithForm
           name="Edit__profile"
@@ -151,15 +157,21 @@ function App() {
           </label>
         </PopupWithForm>
       </Popup>
-      {/* <Popup
-      isOpen ={isDelateCardOpen}>
+      <Popup isOpen={imagePic}>
+        <ImagePopup 
+        cardInfo ={selectedCard}
+        onClose={ClosePopups}
+        />
+      </Popup>
+
+      <Popup isOpen={eraseCardAsk}>
         <PopupWithForm
-        name="delete_card"
-        title="¿Estás seguro?"
-        action="Si"
-        isCLose={ClosePopups}>
-        </PopupWithForm>
-      </Popup> */}
+          name="delete_card"
+          title="¿Estás seguro?"
+          action="Si"
+          isCLose={ClosePopups}
+        ></PopupWithForm>
+      </Popup>
     </div>
   );
 }

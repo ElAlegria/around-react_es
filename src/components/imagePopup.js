@@ -1,21 +1,23 @@
-function ImagePopup(){
-    return(
-        <>
-            <section className="popup popup_preview_image">
-          <div className="popup__container popup__container_role-image">
-            <figure className="popup__figure">
-              <img src=" " alt="#" className="popup__image" />
-              <figcaption className="popup__caption"></figcaption>
-            </figure>
-            <button
-              type="button"
-              className="popup__close-button popup__preview-close-button"
-              aria-label="close button"
-            ></button>
-          </div>
-        </section>
-        </>
-    )
+function ImagePopup(props) {
+  const { cardInfo, onClose } = props;
+  return (
+    <div className="popup__container popup__container_role-image">
+      <figure className="popup__figure">
+        <img
+          src={cardInfo.link}
+          alt={cardInfo.cardName}
+          className="popup__image"
+        />
+        <figcaption className="popup__caption">{cardInfo.cardName}</figcaption>
+      </figure>
+      <button
+        type="button"
+        className="popup__close-button popup__preview-close-button"
+        aria-label="close button"
+        onClick={onClose}
+      ></button>
+    </div>
+  );
 }
 
-export default ImagePopup
+export default ImagePopup;
