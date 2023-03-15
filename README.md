@@ -52,4 +52,4 @@ Tecnologias Utilizadas 🛠️
 
 ## Proyecto en Vivo 💻
 
-- [Disfrutalo en vivo!](https://elalegria.github.io/web_project_4_esp/)
+<!-- - [Disfrutalo en vivo!](https://elalegria.github.io/web_project_4_esp/) (Mantenimiento, Proximamente)-->
