@@ -11,7 +11,7 @@ emergente, todo esto implementado con React , asi que animate!
 
 Tecnologias Utilizadas 🛠️
 1. React 
-- Este proyecto fue creado y implementado mediante react utilizando JSX, paradigmas declarativos, useEffect,useState entre otras cosas
+- Este proyecto fue creado y implementado mediante react utilizando JSX, paradigmas declarativos, useEffect,useState etc.
 2. JavaScript
    - este proyecto abrirá un editor cuando se haga clic en el botón "editar"
      y permitira al usuario colocar su nombre y ocupacion(en proceso de construccion).
