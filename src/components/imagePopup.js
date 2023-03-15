@@ -1,7 +1,7 @@
 function ImagePopup(props) {
   const { cardInfo, onClose } = props;
   return (
-    <div className="popup__container popup__container_role-image">
+    <div className={`popup__container popup__container_role-image ${props.isOpen ? 'animation__join-left' : ''}`}>
       <figure className="popup__figure">
         <img
           src={cardInfo.link}

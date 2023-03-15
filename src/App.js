@@ -3,7 +3,7 @@ import Footer from "./components/footer.js";
 import Header from "./components/header/header.js";
 import Main from "./components/main.js";
 import Popup from "./components/popup.js";
-import Card from "./components/card.js";
+// import Card from "./components/card.js";
 
 import PopupWithForm from "./components/popupWhithForm.js";
 import ImagePopup from "./components/imagePopup.js";
@@ -61,12 +61,13 @@ function App() {
       <Footer />
       <Popup isOpen={isEditProfilePopupOpen}>
         <PopupWithForm
+        isOpen={isEditProfilePopupOpen}
           name="Edit__profile"
           title="Edit Profile"
           action="Save"
           onCLose={ClosePopups}
         >
-          <label className="popup__field" for="popup-input-name">
+          <label className="popup__field" htmlFor="popup-input-name">
             <input
               type="text"
               name="name"
@@ -81,7 +82,7 @@ function App() {
               Por favor, rellena este campo.
             </span>
           </label>
-          <label className="popup__field" for="popup-input-about">
+          <label className="popup__field" htmlFor="popup-input-about">
             <input
               type="text"
               name="about"
@@ -103,9 +104,10 @@ function App() {
           name="add_card"
           title="Nuevo lugar"
           action="Save"
+          isOpen={isAddPlacePopupOpen}
           onCLose={ClosePopups}
         >
-          <label className="popup__field" for="popup-input-title">
+          <label className="popup__field" htmlFor="popup-input-title">
             <input
               type="text"
               name="title"
@@ -120,7 +122,7 @@ function App() {
               Por favor, rellena este campo.
             </span>
           </label>
-          <label className="popup__field" for="popup-input-link">
+          <label className="popup__field" htmlFor="popup-input-link">
             <input
               type="url"
               name="image-link"
@@ -140,9 +142,10 @@ function App() {
           name="image_profile"
           title="Cambiar foto de perfil"
           action="Save"
+          isOpen={isEditAvatarPopupOpen}
           onCLose={ClosePopups}
         >
-          <label className="popup__field" for="popup-input-image">
+          <label className="popup__field" htmlFor="popup-input-image">
             <input
               type="url"
               name="image-link"
@@ -160,6 +163,7 @@ function App() {
       <Popup isOpen={imagePic}>
         <ImagePopup 
         cardInfo ={selectedCard}
+        isOpen={imagePic}
         onClose={ClosePopups}
         />
       </Popup>

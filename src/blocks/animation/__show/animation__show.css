@@ -1,0 +1,38 @@
+@keyframes opacity {
+  0% {
+    /* scale: 1; */
+    opacity: 0;
+  }
+  50% {
+    /* scale: 1.2; */
+    opacity: 70%;
+  }
+  100% {
+    /* scale: 1; */
+    opacity: 100%;
+  }
+}
+@keyframes opacityReverses {
+  0% {
+    /* scale: 1; */
+    opacity: 100%;
+  }
+  50% {
+    /* scale: 1.2; */
+    opacity: 70%;
+  }
+  100% {
+    /* scale: 1; */
+    opacity: 0;
+  }
+}
+.animation__show {
+  visibility: visible;
+  opacity: 1;
+  animation: opacity, 0.9s linear;
+}
+.animation__show-reverse {
+  animation: opacityReverses 0.9s linear forwards;
+  visibility: visible;
+  opacity: 1;
+}

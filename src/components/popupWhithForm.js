@@ -5,7 +5,7 @@ function PopupWithForm(props) {
   // ``
   return (
     <>
-      <div className={`popup__container popup_${props.name}`} name={props.name}>
+      <div className={`popup__container popup_${props.name} ${props.isOpen ? 'animation__scale' : ''}`} name={props.name}>
         <button
           className={`popup__close-button`}
           id={`popup__closet-${props.name}`}
