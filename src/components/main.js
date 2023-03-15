@@ -1,6 +1,6 @@
 import React from "react";
 import { api } from "../ultis/Api";
-import Cards from "./cards";
+import Card from "./card";
 
 function Main(props) {
   const [userName, setUsername] = React.useState("");
@@ -35,7 +35,7 @@ function Main(props) {
     const { _id, owner, link, name, likes } = item;
     // console.log(item)
     return (
-      <Cards
+      <Card
         key={_id}
         cardId={_id}
         cardOwnerId={owner._id}

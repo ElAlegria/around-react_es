@@ -3,7 +3,7 @@ import Footer from "./components/footer.js";
 import Header from "./components/header/header.js";
 import Main from "./components/main.js";
 import Popup from "./components/popup.js";
-import Cards from "./components/cards.js";
+import Card from "./components/card.js";
 
 import PopupWithForm from "./components/popupWhithForm.js";
 import ImagePopup from "./components/imagePopup.js";

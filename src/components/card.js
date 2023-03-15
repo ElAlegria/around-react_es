@@ -1,5 +1,5 @@
 import React from "react";
-function Cards(props) {
+function Card(props) {
   const {
     cardOwnerId,
     link,
@@ -45,4 +45,4 @@ function Cards(props) {
   );
 }
 
-export default Cards;
+export default Card;
