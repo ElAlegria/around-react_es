@@ -1,22 +1,21 @@
-import React from "react";
+import React,{useState} from "react";
 import Footer from "./components/footer.js";
 import Header from "./components/header/header.js";
 import Main from "./components/main.js";
 import Popup from "./components/popup.js";
-// import Card from "./components/card.js";
 
 import PopupWithForm from "./components/popupWhithForm.js";
 import ImagePopup from "./components/imagePopup.js";
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
     React.useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
   // const [isDelateCardOpen, setIsDelateCardOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState("");
-  const [eraseCardAsk, setEraseCardAsk] = React.useState(false);
-  const [imagePic, setImagePic] = React.useState(false);
+  const [selectedCard, setSelectedCard] = useState("");
+  const [eraseCardAsk, setEraseCardAsk] = useState(false);
+  const [imagePic, setImagePic] = useState(false);
 
 
   function handleEditAvatarClick() {
@@ -35,14 +34,11 @@ function App() {
   function handleEraseAsk() {
     setEraseCardAsk(true);
   }
-  // function handleTrashCardClick() {
-  //   setIsDelateCardOpen(true);
-  // }
+ 
   function ClosePopups() {
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
-    // setIsDelateCardOpen(false);
     setEraseCardAsk(false)
     setSelectedCard('')
     setImagePic(false)
