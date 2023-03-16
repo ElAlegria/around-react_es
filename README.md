@@ -10,12 +10,15 @@ emergente, todo esto implementado con React , asi que animate!
 ![Around the US](https://media.giphy.com/media/xGeTzux25uNbzIYdnc/giphy.gif)
 
 Tecnologias Utilizadas 🛠️
-1. React 
+
+1. React
+
 - Este proyecto fue creado y implementado mediante react utilizando JSX, paradigmas declarativos, useEffect,useState etc.
+
 2. JavaScript
    - este proyecto abrirá un editor cuando se haga clic en el botón "editar"
      y permitira al usuario colocar su nombre y ocupacion(en proceso de construccion).
-   - La actualización reciente agrega funcionalidad al botón "+". Los usuarios ahora pueden ingresar 
+   - La actualización reciente agrega funcionalidad al botón "+". Los usuarios ahora pueden ingresar
      sus propias fotos desde direcciones URL externas (en proceso de construccion).
    - Los usuarios ahora pueden examinar cada foto en su relación de aspecto original haciendo clic
      en una imagen para ampliarla.
@@ -52,4 +55,4 @@ Tecnologias Utilizadas 🛠️
 
 ## Proyecto en Vivo 💻
 
-[Disfrutalo en vivo!](https://elalegria.github.io/web_project_4_esp/)
+[Disfrutalo en vivo!]()
