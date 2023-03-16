@@ -5,7 +5,12 @@ function PopupWithForm(props) {
   // ``
   return (
     <>
-      <div className={`popup__container popup_${props.name} ${props.isOpen ? 'animation__scale' : ''}`} name={props.name}>
+      <div
+        className={`popup__container popup_${props.name} ${
+          props.isOpen ? "animation__scale" : ""
+        } ${onCLose ? "animation__position-right" : ""}`}
+        name={props.name}
+      >
         <button
           className={`popup__close-button`}
           id={`popup__closet-${props.name}`}
@@ -26,7 +31,6 @@ function PopupWithForm(props) {
           id={`popup__closet-${props.name}_submit`}
           type="Submit"
           aria-label="save button"
-          data-textContent="Save"
         >
           {props.action}
         </button>
@@ -34,4 +38,4 @@ function PopupWithForm(props) {
     </>
   );
 }
- export default PopupWithForm
+export default PopupWithForm;

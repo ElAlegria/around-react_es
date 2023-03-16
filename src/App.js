@@ -114,7 +114,7 @@ function App() {
               placeholder="Titulo"
               id="popup-input-title"
               className="popup__input"
-              minlength="2"
+              minLength="2"
               maxLength="30"
               required
             />

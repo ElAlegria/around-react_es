@@ -1,12 +1,17 @@
 function ImagePopup(props) {
-  const { cardInfo, onClose } = props;
+  const { isOpen, cardInfo, onClose } = props;
   return (
-    <div className={`popup__container popup__container_role-image ${props.isOpen ? 'animation__join-left' : ''}`}>
-      <figure className="popup__figure">
+    <div
+      className={`popup__container popup__container_role-image ${
+        props.isOpen ? "animation__join-left" : ""
+      }
+    `}
+    >
+      <figure className="image__figure">
         <img
-          src={cardInfo.link}
+          src={`${isOpen ? cardInfo.link : ""}`}
           alt={cardInfo.cardName}
-          className="popup__image"
+          className={"image__popup"}
         />
         <figcaption className="popup__caption">{cardInfo.cardName}</figcaption>
       </figure>
@@ -21,3 +26,5 @@ function ImagePopup(props) {
 }
 
 export default ImagePopup;
+
+//``
