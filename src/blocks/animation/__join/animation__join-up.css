@@ -10,5 +10,5 @@
 }
 
 .animation__join-up{
-    animation: joinUp 1s .6s ease-in-out forwards
+    animation: joinUp 1s .6s ease-in-out forwards;
 }
