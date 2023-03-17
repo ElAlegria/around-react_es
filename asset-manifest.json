@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/around-react_es/static/css/main.eb642214.css",
-    "main.js": "/around-react_es/static/js/main.eabc3614.js",
+    "main.css": "/around-react_es/static/css/main.e5b10ba8.css",
+    "main.js": "/around-react_es/static/js/main.cc2543cf.js",
     "static/js/787.1c78f32b.chunk.js": "/around-react_es/static/js/787.1c78f32b.chunk.js",
     "index.html": "/around-react_es/index.html",
     "static/media/trash-icon.svg": "/around-react_es/static/media/trash-icon.ba43124316072f7a8629.svg",
@@ -11,12 +11,12 @@
     "static/media/pencil-vector.svg": "/around-react_es/static/media/pencil-vector.ae1a976ddb506239e9f0.svg",
     "static/media/edit-icon.svg": "/around-react_es/static/media/edit-icon.dd0216e57795a77daa67.svg",
     "static/media/add-icon.svg": "/around-react_es/static/media/add-icon.199d147dad974005fc31.svg",
-    "main.eb642214.css.map": "/around-react_es/static/css/main.eb642214.css.map",
-    "main.eabc3614.js.map": "/around-react_es/static/js/main.eabc3614.js.map",
+    "main.e5b10ba8.css.map": "/around-react_es/static/css/main.e5b10ba8.css.map",
+    "main.cc2543cf.js.map": "/around-react_es/static/js/main.cc2543cf.js.map",
     "787.1c78f32b.chunk.js.map": "/around-react_es/static/js/787.1c78f32b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.eb642214.css",
-    "static/js/main.eabc3614.js"
+    "static/css/main.e5b10ba8.css",
+    "static/js/main.cc2543cf.js"
   ]
 }
