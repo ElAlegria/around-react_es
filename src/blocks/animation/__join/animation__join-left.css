@@ -7,8 +7,7 @@
     }
 }
 .animation__join-left{
-    display: block;
-    animation: joinLeft 1s  ease-in-out forwards;
+    animation: joinLeft 1s   ease-in-out forwards;
     z-index: 2;
-    
+
 }

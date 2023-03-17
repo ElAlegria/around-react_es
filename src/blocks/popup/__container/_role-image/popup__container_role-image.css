@@ -1,4 +1,5 @@
 .popup__container_role-image {
+  display: none;
   background-color: transparent;
   border-radius: 0;
   box-shadow: none;

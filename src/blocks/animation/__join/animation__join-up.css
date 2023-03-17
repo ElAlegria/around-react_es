@@ -1,6 +1,8 @@
 @keyframes joinUp  {
     0%{
         transform: translateY(-900px);
+        display: flex;
+
     }
     100%{
         transform: translateY(0);
@@ -8,5 +10,5 @@
 }
 
 .animation__join-up{
-    animation: joinUp 1s ease-in-out forwards;
+    animation: joinUp 1s .6s ease-in-out forwards
 }

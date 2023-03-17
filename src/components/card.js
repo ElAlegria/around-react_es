@@ -16,20 +16,20 @@ function Card(props) {
   }
 
   return (
-    <div className="card">
+    <div className="card animation__join-back">
       <button
         type="button"
-        className="card__delete-button animation__join-left"
+        className="card__delete-button "
         aria-label="trash"
         onClick={onDeleteCardAsk}
       ></button>
       <img
-        className="card__image animation__join-up"
+        className="card__image"
         src={link}
         alt={cardName}
         onClick={handleClickCard}
       />
-      <div className="card__information animation__join-back">
+      <div className="card__information animation__join-left">
         <h2 className="card__title">{cardName}</h2>
         <div className="card__like-container">
           <button
