@@ -1,13 +1,13 @@
 import React from "react";
 function Card(props) {
   const {
-    cardOwnerId,
+    // cardOwnerId,
+    // onCardClick,
+    // onCardDelete,
     link,
     cardName,
     cardLikes,
-    onCardClick,
     onCardLike,
-    onCardDelete,
     onDeleteCardAsk,
   } = props;
 
