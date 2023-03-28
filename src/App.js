@@ -1,23 +1,97 @@
-import React,{useState} from "react";
-import Footer from "./components/footer.js";
+import React, { useState } from "react";
+import { api } from "./ultis/Api.js";
+import { CurrentUserContext } from "./contexts/CurrentUserContext.js";
 import Header from "./components/header/header.js";
 import Main from "./components/main.js";
+import Footer from "./components/footer.js";
 import Popup from "./components/popup.js";
-
 import PopupWithForm from "./components/popupWhithForm.js";
 import ImagePopup from "./components/imagePopup.js";
+import Card from "./components/card.js";
+import EditProfilePopup from "./components/editProfilePopup.js";
+// import delateCard from "./components/delateCard.js";
 function App() {
+  //?Profile
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
     React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
-  // const [isDelateCardOpen, setIsDelateCardOpen] = React.useState(false);
+  const [userName, setUserName] = React.useState("");
+  const [userAbout, setUserAbout] = React.useState("");
+  // const [] = React.useState("");
+
+  //?cards
   const [selectedCard, setSelectedCard] = useState("");
   const [eraseCardAsk, setEraseCardAsk] = useState(false);
   const [imagePic, setImagePic] = useState(false);
+  const [currentUser, setCurrentUser] = useState("");
 
+  const [cards, setCard] = React.useState([]);
 
+  const renderCard = () =>
+    cards.map((item) => {
+      const { _id, owner, link, name, likes } = item;
+      return (
+        <Card
+          key={_id}
+          cardId={_id}
+          cardOwnerId={owner._id}
+          link={link}
+          cardName={name}
+          cardLikes={likes}
+          onCardClick={handleClickCard}
+          onCardDelate={handleDelateCard}
+          onCardLike={() => {
+            handleCardLike(item);
+          }}
+        />
+      );
+    });
+  React.useEffect(() => {
+    api.getUserInfo().then((info) => {
+      setCurrentUser(info);
+      setUserName(info.name)
+      setUserAbout(info.about)
+    });
+  },[]);
+
+  React.useEffect(() => {
+    api.getCardList().then((cards) => {
+      setCard(cards);
+    });
+  }, []);
+
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+
+    if (!isLiked) {
+      api.addLike(card._id, !isLiked).then((newCard) => {
+        setCard((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
+      });
+    } else {
+      api.removeLike(card._id).then((newCard) => {
+        setCard((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
+      });
+    }
+  }
+
+  function handleDelateCard(card) {
+    api.removeCard(card.cardId).then(() => {
+      function dontDeleteCard(item) {
+        return item._id !== card.cardId;
+      }
+      const newCardArray = cards.filter(dontDeleteCard);
+      setCard(newCardArray);
+    });
+    // return api.getCardList();
+  }
+
+  //!Profile
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
   }
@@ -27,151 +101,151 @@ function App() {
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
   }
+  function handleUpdateUser(data) {
+    api.setUserInfo(data).then(() => {
+      api.getUserInfo().then((info) => {
+        setCurrentUser(info);
+        setUserName(info.name);
+        setUserAbout(info.about);
+      });
+    });
+    ClosePopups();
+  }
+
+  function handleUserNameChange(e) {
+    setUserName(e.target.value);
+  }
+
+  function handleUserAboutChange(e) {
+    setUserAbout(e.target.value);
+  }
+
+  //!Card
   function handleClickCard(card) {
     setSelectedCard(card);
-    setImagePic(true)
+    setImagePic(true);
   }
-  function handleEraseAsk() {
+  function handleEraseAsk(card) {
     setEraseCardAsk(true);
+    setSelectedCard(card);
   }
- 
+
   function ClosePopups() {
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
-    setEraseCardAsk(false)
-    setSelectedCard('')
-    setImagePic(false)
+    setEraseCardAsk(false);
+    setSelectedCard("");
+    setImagePic(false);
   }
 
   return (
     <div className="page">
-      <Header />
-      <Main
-        onEditAvatarPopupOpen={handleEditAvatarClick}
-        onEditProfilePopupOpen={handleEditProfileClick}
-        onAddPlacePopupOpen={handleAddPlaceClick}
-        onCardClick={handleClickCard}
-        onDelateAsk={handleEraseAsk}
-      />
-      <Footer />
-      <Popup isOpen={isEditProfilePopupOpen}>
-        <PopupWithForm
-        isOpen={isEditProfilePopupOpen}
-          name="Edit__profile"
-          title="Edit Profile"
-          action="Save"
-          onCLose={ClosePopups}
-        >
-          <label className="popup__field" htmlFor="popup-input-name">
-            <input
-              type="text"
-              name="name"
-              placeholder="Nombre"
-              id="popup-input-name"
-              className="popup__input popup__input_type_name"
-              minLength="2"
-              maxLength="40"
-              required
-            />
-            <span className="popup__error popup-input-name-error">
-              Por favor, rellena este campo.
-            </span>
-          </label>
-          <label className="popup__field" htmlFor="popup-input-about">
-            <input
-              type="text"
-              name="about"
-              placeholder="Ocupación"
-              id="popup-input-about"
-              className="popup__input popup__input_type_about"
-              minLength="2"
-              maxLength="200"
-              required
-            />
-            <span className="popup__error popup-input-about-error">
-              Por favor, rellena este campo.
-            </span>
-          </label>
-        </PopupWithForm>
-      </Popup>
-      <Popup isOpen={isAddPlacePopupOpen}>
-        <PopupWithForm
-          name="add_card"
-          title="Nuevo lugar"
-          action="Save"
-          isOpen={isAddPlacePopupOpen}
-          onCLose={ClosePopups}
-        >
-          <label className="popup__field" htmlFor="popup-input-title">
-            <input
-              type="text"
-              name="title"
-              placeholder="Titulo"
-              id="popup-input-title"
-              className="popup__input"
-              minLength="2"
-              maxLength="30"
-              required
-            />
-            <span className="popup__error popup-input-title-error">
-              Por favor, rellena este campo.
-            </span>
-          </label>
-          <label className="popup__field" htmlFor="popup-input-link">
-            <input
-              type="url"
-              name="image-link"
-              placeholder="Imagen URL"
-              id="popup-input-link"
-              className="popup__input"
-              required
-            />
-            <span className="popup__error popup-input-link-error">
-              Por favor, introduce una dirección web.
-            </span>
-          </label>
-        </PopupWithForm>
-      </Popup>
-      <Popup isOpen={isEditAvatarPopupOpen}>
-        <PopupWithForm
-          name="image_profile"
-          title="Cambiar foto de perfil"
-          action="Save"
-          isOpen={isEditAvatarPopupOpen}
-          onCLose={ClosePopups}
-        >
-          <label className="popup__field" htmlFor="popup-input-image">
-            <input
-              type="url"
-              name="image-link"
-              placeholder="Imagen URL"
-              id="popup-input-image"
-              className="popup__input"
-              required
-            />
-            <span className="popup__error popup-input-image-error">
-              Introduce una dirección web.
-            </span>
-          </label>
-        </PopupWithForm>
-      </Popup>
-      <Popup isOpen={imagePic}>
-        <ImagePopup 
-        cardInfo ={selectedCard}
-        isOpen={imagePic}
-        onClose={ClosePopups}
+      <CurrentUserContext.Provider value={currentUser}>
+        <Header />
+        <Main
+          onEditAvatarPopupOpen={handleEditAvatarClick}
+          onEditProfilePopupOpen={handleEditProfileClick}
+          onAddPlacePopupOpen={handleAddPlaceClick}
+          onCardClick={handleClickCard}
+          onDeleteAsk={handleEraseAsk}
+          rendererCard={renderCard}
         />
-      </Popup>
-
-      <Popup isOpen={eraseCardAsk}>
-        <PopupWithForm
-          name="delete_card"
-          title="¿Estás seguro?"
-          action="Si"
-          isCLose={ClosePopups}
-        ></PopupWithForm>
-      </Popup>
+        <Footer />
+        <Popup isOpen={isEditProfilePopupOpen}>
+          <EditProfilePopup
+            isOpen={isEditProfilePopupOpen}
+            onCLose={ClosePopups}
+            onUpdateUser={handleUpdateUser}
+            onUserNameChange={handleUserNameChange}
+            userDescriptionChange={handleUserAboutChange}
+            setUserName={setUserName}
+            setUserAbout={setUserAbout}
+            name={userName}
+            about={userAbout}
+          />
+        </Popup>
+        
+        <Popup isOpen={isAddPlacePopupOpen}>
+          <PopupWithForm
+            name="add_card"
+            title="Nuevo lugar"
+            action="Save"
+            isOpen={isAddPlacePopupOpen}
+            onCLose={ClosePopups}
+          >
+            <label className="popup__field" htmlFor="popup-input-title">
+              <input
+                type="text"
+                name="title"
+                placeholder="Titulo"
+                id="popup-input-title"
+                className="popup__input"
+                minLength="2"
+                maxLength="30"
+                required
+              />
+              <span className="popup__error popup-input-title-error">
+                Por favor, rellena este campo.
+              </span>
+            </label>
+            <label className="popup__field" htmlFor="popup-input-link">
+              <input
+                type="url"
+                name="image-link"
+                placeholder="Imagen URL"
+                id="popup-input-link"
+                className="popup__input"
+                required
+              />
+              <span className="popup__error popup-input-link-error">
+                Por favor, introduce una dirección web.
+              </span>
+            </label>
+          </PopupWithForm>
+        </Popup>
+        <Popup isOpen={isEditAvatarPopupOpen}>
+          <PopupWithForm
+            name="image_profile"
+            title="Cambiar foto de perfil"
+            action="Save"
+            isOpen={isEditAvatarPopupOpen}
+            onCLose={ClosePopups}
+          >
+            <label className="popup__field" htmlFor="popup-input-image">
+              <input
+                type="url"
+                name="image-link"
+                placeholder="Imagen URL"
+                id="popup-input-image"
+                className="popup__input"
+                required
+              />
+              <span className="popup__error popup-input-image-error">
+                Introduce una dirección web.
+              </span>
+            </label>
+          </PopupWithForm>
+        </Popup>
+        <Popup isOpen={imagePic}>
+          <ImagePopup
+            cardInfo={selectedCard}
+            isOpen={imagePic}
+            onClose={ClosePopups}
+          />
+        </Popup>
+        {/* <Popup isOpen={eraseCardAsk}>
+          <PopupWithForm
+            name="delete_card"
+            title="¿Estás seguro?"
+            action="Si"
+            onCLose={ClosePopups}
+          ></PopupWithForm>
+        </Popup> */}
+        {/* <Popup isOpen={eraseCardAsk}>
+          <delateCard />
+        </Popup> */}
+      </CurrentUserContext.Provider>
     </div>
   );
 }

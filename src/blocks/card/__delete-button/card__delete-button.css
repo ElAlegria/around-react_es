@@ -9,6 +9,7 @@
   position: absolute;
   cursor: pointer;
   transition: opacity 0.5s;
+  display: none;
 }
 
 .card__delete-button:hover {
@@ -16,5 +17,6 @@
 }
 
 .card__delete-button_active {
+  display: block;
   visibility: visible;
 }

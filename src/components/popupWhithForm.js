@@ -1,7 +1,7 @@
 import React from "react";
 
 function PopupWithForm(props) {
-  const { onCLose } = props;
+  const { onCLose,onSubmit } = props;
   // ``
   return (
     <>
@@ -31,6 +31,7 @@ function PopupWithForm(props) {
           id={`popup__closet-${props.name}_submit`}
           type="Submit"
           aria-label="save button"
+          onClick={(e) => onSubmit(e)}
         >
           {props.action}
         </button>
