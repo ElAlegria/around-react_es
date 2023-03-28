@@ -41,18 +41,40 @@ class Api {
   addCard({ name, link }) {
     return this._makeRequest("POST", `${this._baseUrl}/cards`, { name, link });
   }
-
+  2;
   //removeCard hara una petición DELETE al endpoint para eliminar la tarjeta con el id especificado.
   removeCard(cardId) {
     return this._makeRequest("DELETE", `${this._baseUrl}/cards/${cardId}`);
   }
 
   //setUserAvatar hara una petición PATCH al endpoint para actualizar el avatar del usuario actual con el link especificado.
-  setUserAvatar(avatar) {
-    return this._makeRequest("PATCH", `${this._baseUrl}/users/me/avatar`, {
-      avatar,
+  //? api avatar Provicional
+  handleChangeAvatar(value) {
+    return fetch(
+      "https://around.nomoreparties.co/v1/web_es_cohort_04/users/me/avatar",
+      {
+        method: "PATCH",
+        headers: {
+          authorization: "7b89216e-03f6-4244-8235-930eb464c231",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          avatar: `${value.avatar}`,
+        }),
+      }
+    ).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
     });
   }
+  //!Api avatar no funcional
+  // setUserAvatar(avatar) {
+  //   return this._makeRequest("PATCH", `${this._baseUrl}/users/me/avatar`, {
+  //     avatar,
+  //   });
+  // }
 
   //addLike hara una petición PUT al endpoint para agregar un like a la tarjeta con el id especificado.
   addLike(cardId) {
@@ -65,6 +87,7 @@ class Api {
       `${this._baseUrl}/cards/likes/${cardId}`
     );
   }
+
 }
 export const api = new Api({
   address: "https://around.nomoreparties.co/v1/web_es_cohort_04",

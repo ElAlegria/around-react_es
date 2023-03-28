@@ -9,6 +9,7 @@ import PopupWithForm from "./components/popupWhithForm.js";
 import ImagePopup from "./components/imagePopup.js";
 import Card from "./components/card.js";
 import EditProfilePopup from "./components/editProfilePopup.js";
+import EditAvatarPopup from "./components/EditAvatarPopup.js";
 // import delateCard from "./components/delateCard.js";
 function App() {
   //?Profile
@@ -25,7 +26,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState("");
   const [eraseCardAsk, setEraseCardAsk] = useState(false);
   const [imagePic, setImagePic] = useState(false);
-  const [currentUser, setCurrentUser] = useState("");
+  const [currentUser, setCurrentUser] = useState({});
 
   const [cards, setCard] = React.useState([]);
 
@@ -51,10 +52,10 @@ function App() {
   React.useEffect(() => {
     api.getUserInfo().then((info) => {
       setCurrentUser(info);
-      setUserName(info.name)
-      setUserAbout(info.about)
+      setUserName(info.name);
+      setUserAbout(info.about);
     });
-  },[]);
+  }, []);
 
   React.useEffect(() => {
     api.getCardList().then((cards) => {
@@ -62,6 +63,7 @@ function App() {
     });
   }, []);
 
+  //! function Card
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
@@ -88,7 +90,6 @@ function App() {
       const newCardArray = cards.filter(dontDeleteCard);
       setCard(newCardArray);
     });
-    // return api.getCardList();
   }
 
   //!Profile
@@ -118,6 +119,16 @@ function App() {
 
   function handleUserAboutChange(e) {
     setUserAbout(e.target.value);
+  }
+
+  //!Edit avatar
+  function handleUpdateAvatar(avatar) {
+    api.handleChangeAvatar(avatar)
+    .then((data) => {
+      setCurrentUser(data)
+    })
+    .catch((err) => console.error(err));
+    ClosePopups();
   }
 
   //!Card
@@ -165,7 +176,7 @@ function App() {
             about={userAbout}
           />
         </Popup>
-        
+
         <Popup isOpen={isAddPlacePopupOpen}>
           <PopupWithForm
             name="add_card"
@@ -204,28 +215,13 @@ function App() {
             </label>
           </PopupWithForm>
         </Popup>
+
         <Popup isOpen={isEditAvatarPopupOpen}>
-          <PopupWithForm
-            name="image_profile"
-            title="Cambiar foto de perfil"
-            action="Save"
+          <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onCLose={ClosePopups}
-          >
-            <label className="popup__field" htmlFor="popup-input-image">
-              <input
-                type="url"
-                name="image-link"
-                placeholder="Imagen URL"
-                id="popup-input-image"
-                className="popup__input"
-                required
-              />
-              <span className="popup__error popup-input-image-error">
-                Introduce una dirección web.
-              </span>
-            </label>
-          </PopupWithForm>
+            onUpdateAvatar={handleUpdateAvatar}
+          />
         </Popup>
         <Popup isOpen={imagePic}>
           <ImagePopup
