@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { api } from "./ultis/Api.js";
 import { CurrentUserContext } from "./contexts/CurrentUserContext.js";
-import Header from "./components/header/header.js";
+import Header from "./components/header.js";
 import Main from "./components/main.js";
 import Footer from "./components/footer.js";
 import Popup from "./components/popup.js";
