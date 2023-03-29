@@ -1,8 +1,9 @@
 {
   "files": {
-    "main.css": "/around-react_es/static/css/main.1449cfe7.css",
-    "main.js": "/around-react_es/static/js/main.d8ca4b96.js",
+    "main.css": "/around-react_es/static/css/main.72dc4be5.css",
+    "main.js": "/around-react_es/static/js/main.9ede2b2f.js",
     "static/js/787.1c78f32b.chunk.js": "/around-react_es/static/js/787.1c78f32b.chunk.js",
+    "static/media/heart-image-white.png": "/around-react_es/static/media/heart-image-white.5edd14d3b3e727bc9062.png",
     "index.html": "/around-react_es/index.html",
     "static/media/trash-icon.svg": "/around-react_es/static/media/trash-icon.ba43124316072f7a8629.svg",
     "static/media/blackheart-icon.svg": "/around-react_es/static/media/blackheart-icon.f8482d28867cec189b08.svg",
@@ -11,12 +12,12 @@
     "static/media/pencil-vector.svg": "/around-react_es/static/media/pencil-vector.ae1a976ddb506239e9f0.svg",
     "static/media/edit-icon.svg": "/around-react_es/static/media/edit-icon.dd0216e57795a77daa67.svg",
     "static/media/add-icon.svg": "/around-react_es/static/media/add-icon.199d147dad974005fc31.svg",
-    "main.1449cfe7.css.map": "/around-react_es/static/css/main.1449cfe7.css.map",
-    "main.d8ca4b96.js.map": "/around-react_es/static/js/main.d8ca4b96.js.map",
+    "main.72dc4be5.css.map": "/around-react_es/static/css/main.72dc4be5.css.map",
+    "main.9ede2b2f.js.map": "/around-react_es/static/js/main.9ede2b2f.js.map",
     "787.1c78f32b.chunk.js.map": "/around-react_es/static/js/787.1c78f32b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1449cfe7.css",
-    "static/js/main.d8ca4b96.js"
+    "static/css/main.72dc4be5.css",
+    "static/js/main.9ede2b2f.js"
   ]
 }
