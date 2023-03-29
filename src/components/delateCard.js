@@ -1,5 +1,5 @@
 import React from "react";
-import PopupWithForm from "./popupWhithForm";
+import PopupWithForm from "./PopupWithForm";
 function delateCard(props) {
   const { onClose, eraseDelate } = props;
 

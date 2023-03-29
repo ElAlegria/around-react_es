@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { api } from "./ultis/Api.js";
-import { CurrentUserContext } from "./contexts/CurrentUserContext.js";
-import Header from "./components/header.js";
-import Main from "./components/main.js";
-import Footer from "./components/footer.js";
-import Popup from "./components/popup.js";
-import ImagePopup from "./components/imagePopup.js";
-import EditProfilePopup from "./components/editProfilePopup.js";
-import EditAvatarPopup from "./components/EditAvatarPopup.js";
-import Card from "./components/card.js";
-import AddPlacePopup from "./components/addPlacePopup.js";
+import { api } from "../utils/api.js";
+import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
+import Header from "./Header.js";
+import Main from "./Main.js";
+import Footer from "./Footer.js";
+import Popup from "./Popup.js";
+import ImagePopup from "./ImagePopup.js";
+import EditProfilePopup from "./EditProfilePopup.js";
+import EditAvatarPopup from "./EditAvatarPopup.js";
+import Card from "./Card.js";
+import AddPlacePopup from "./AddPlacePopup.js";
 // import delateCard from "./components/delateCard.js";
 function App() {
   //?Profile
