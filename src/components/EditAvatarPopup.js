@@ -3,9 +3,11 @@ import PopupWithForm from "./PopupWithForm";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function EditAvatarPopup(props) {
+
   const currentUser = React.useContext(CurrentUserContext);
 
   const avatarRef = React.useRef(currentUser.avatar);
+  
   function handleSubmit(e) {
     e.preventDefault();
     props.onUpdateAvatar({

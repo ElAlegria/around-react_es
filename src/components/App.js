@@ -10,7 +10,8 @@ import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
 import Card from "./Card.js";
 import AddPlacePopup from "./AddPlacePopup.js";
-// import delateCard from "./components/delateCard.js";
+
+
 function App() {
   //?Profile
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -28,6 +29,8 @@ function App() {
 
   const [newPlaceTitle, setNewPlaceTitle] = React.useState("");
   const [newPlaceLink, setNewPlaceLink] = React.useState("");
+
+  
   //?image Popup
   const [eraseCardAsk, setEraseCardAsk] = useState(false);
   const [imagePic, setImagePic] = useState(false);
