@@ -9,7 +9,7 @@ import ImagePopup from "./components/imagePopup.js";
 import EditProfilePopup from "./components/editProfilePopup.js";
 import EditAvatarPopup from "./components/EditAvatarPopup.js";
 import Card from "./components/card.js";
-import AddPlacePopup from "./components/addPlacePopup.js"; 
+import AddPlacePopup from "./components/addPlacePopup.js";
 // import delateCard from "./components/delateCard.js";
 function App() {
   //?Profile
@@ -20,19 +20,33 @@ function App() {
     React.useState(false);
   const [userName, setUserName] = React.useState("");
   const [userAbout, setUserAbout] = React.useState("");
-  // const [] = React.useState("");
+  const [currentUser, setCurrentUser] = useState({});
 
   //?cards
   const [cards, setCard] = React.useState([]);
   const [selectedCard, setSelectedCard] = useState({});
-  const [eraseCardAsk, setEraseCardAsk] = useState(false);
-  const [imagePic, setImagePic] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
 
   const [newPlaceTitle, setNewPlaceTitle] = React.useState("");
   const [newPlaceLink, setNewPlaceLink] = React.useState("");
+  //?image Popup
+  const [eraseCardAsk, setEraseCardAsk] = useState(false);
+  const [imagePic, setImagePic] = useState(false);
 
+  React.useEffect(() => {
+    api.getUserInfo().then((info) => {
+      setCurrentUser(info);
+      setUserName(info.name);
+      setUserAbout(info.about);
+    });
+  }, []);
 
+  React.useEffect(() => {
+    api.getCardList().then((cards) => {
+      setCard(cards);
+    });
+  }, []);
+
+  //! function Card
   const renderCard = () =>
     cards.map((item) => {
       const { _id, owner, link, name, likes } = item;
@@ -52,31 +66,16 @@ function App() {
         />
       );
     });
-  React.useEffect(() => {
-    api.getUserInfo().then((info) => {
-      setCurrentUser(info);
-      setUserName(info.name);
-      setUserAbout(info.about);
-    });
-  }, []);
-
-  React.useEffect(() => {
-    api.getCardList().then((cards) => {
-      setCard(cards);
-    });
-  }, []);
-
-  //! function Card
-  function handleAddPlaceSubmit (data){
-    api.handleAddCard(data).then((newCard)=>([newCard,...cards]))
-    ClosePopups()
+  function handleAddPlaceSubmit(data) {
+    api.handleAddCard(data).then((newCard) => setCard([newCard, ...cards]));
+    ClosePopups();
   }
-function handleNewPlaceTitleChance(e){
-  setNewPlaceTitle(e.target.value)
-}
-function handleNewPlaceLinkChance(e){
-  setNewPlaceLink(e.target.value)
-}
+  function handleNewPlaceTitleChance(e) {
+    setNewPlaceTitle(e.target.value);
+  }
+  function handleNewPlaceLinkChance(e) {
+    setNewPlaceLink(e.target.value);
+  }
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
@@ -137,11 +136,12 @@ function handleNewPlaceLinkChance(e){
 
   //!Edit avatar
   function handleUpdateAvatar(avatar) {
-    api.handleChangeAvatar(avatar)
-    .then((data) => {
-      setCurrentUser(data)
-    })
-    .catch((err) => console.error(err));
+    api
+      .handleChangeAvatar(avatar)
+      .then((data) => {
+        setCurrentUser(data);
+      })
+      .catch((err) => console.error(err));
     ClosePopups();
   }
 
@@ -192,15 +192,15 @@ function handleNewPlaceLinkChance(e){
 
         <Popup isOpen={isAddPlacePopupOpen}>
           <AddPlacePopup
-          isOpen={isAddPlacePopupOpen}
-          onCLose={ClosePopups}
-          onAddPlaceSubmit={handleAddPlaceSubmit}
-          onNewPlaceTitleChange={handleNewPlaceTitleChance}
-          onNewPlaceLinkChange={handleNewPlaceLinkChance}
-          setNewPlaceTitle={setNewPlaceTitle}
-          setNewPlaceLink={setNewPlaceLink}
-          newPlaceTitle={newPlaceTitle}
-          newPlaceLink={newPlaceLink}
+            isOpen={isAddPlacePopupOpen}
+            onCLose={ClosePopups}
+            onAddPlaceSubmit={handleAddPlaceSubmit}
+            onNewPlaceTitleChange={handleNewPlaceTitleChance}
+            onNewPlaceLinkChange={handleNewPlaceLinkChance}
+            setNewPlaceTitle={setNewPlaceTitle}
+            setNewPlaceLink={setNewPlaceLink}
+            newPlaceTitle={newPlaceTitle}
+            newPlaceLink={newPlaceLink}
           />
         </Popup>
 
