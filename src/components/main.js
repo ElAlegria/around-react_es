@@ -4,21 +4,13 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 function Main(props) {
   const currentUser = React.useContext(CurrentUserContext);
 
-  const {
-    onEditProfilePopupOpen,
-    onEditAvatarPopupOpen,
-    onAddPlacePopupOpen,
-    rendererCard
-  } = props;
-
-  
   return (
     <main className="content">
       <section className="profile">
         <div className="profile__container">
           <div
             className="profile__avatar-wrapper"
-            onClick={onEditAvatarPopupOpen}
+            onClick={props.onEditAvatarPopupOpen}
           >
             <img
               src={currentUser.avatar}
@@ -34,7 +26,7 @@ function Main(props) {
                 type="button"
                 className="profile__edit-button"
                 aria-label="edit profile button"
-                onClick={onEditProfilePopupOpen}
+                onClick={props.onEditProfilePopupOpen}
               ></button>
             </div>
             <p className="profile__profession">{currentUser.about}</p>
@@ -44,11 +36,11 @@ function Main(props) {
           type="button"
           className="profile__add-button"
           aria-label="add button"
-          onClick={onAddPlacePopupOpen}
+          onClick={props.onAddPlacePopupOpen}
         ></button>
       </section>
       <section className="cards">
-        <div className="cards__container" >{rendererCard()}</div>
+        <div className="cards__container" >{props.rendererCard()}</div>
       </section>
     </main>
   );

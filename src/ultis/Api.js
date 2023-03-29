@@ -38,10 +38,27 @@ class Api {
     });
   }
   //addCard hara una petición POST al endpoint para crear una nueva tarjeta con el nombre y link especificados.
-  addCard({ name, link }) {
-    return this._makeRequest("POST", `${this._baseUrl}/cards`, { name, link });
+  // addCard({ name, link }) {
+  //   return this._makeRequest("POST", `${this._baseUrl}/cards`, { name, link });
+  // }
+  handleAddCard(value) {
+    return fetch("https://around.nomoreparties.co/v1/web_es_cohort_04/cards", {
+      method: "POST",
+      headers: {
+        authorization: "7b89216e-03f6-4244-8235-930eb464c231",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: `${value.newPlaceTitle}`,
+        link: `${value.newPlaceLink}`,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
   }
-  2;
   //removeCard hara una petición DELETE al endpoint para eliminar la tarjeta con el id especificado.
   removeCard(cardId) {
     return this._makeRequest("DELETE", `${this._baseUrl}/cards/${cardId}`);
@@ -87,7 +104,6 @@ class Api {
       `${this._baseUrl}/cards/likes/${cardId}`
     );
   }
-
 }
 export const api = new Api({
   address: "https://around.nomoreparties.co/v1/web_es_cohort_04",

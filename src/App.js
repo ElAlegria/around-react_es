@@ -5,11 +5,11 @@ import Header from "./components/header/header.js";
 import Main from "./components/main.js";
 import Footer from "./components/footer.js";
 import Popup from "./components/popup.js";
-import PopupWithForm from "./components/popupWhithForm.js";
 import ImagePopup from "./components/imagePopup.js";
-import Card from "./components/card.js";
 import EditProfilePopup from "./components/editProfilePopup.js";
 import EditAvatarPopup from "./components/EditAvatarPopup.js";
+import Card from "./components/card.js";
+import AddPlacePopup from "./components/addPlacePopup.js"; 
 // import delateCard from "./components/delateCard.js";
 function App() {
   //?Profile
@@ -23,12 +23,15 @@ function App() {
   // const [] = React.useState("");
 
   //?cards
-  const [selectedCard, setSelectedCard] = useState("");
+  const [cards, setCard] = React.useState([]);
+  const [selectedCard, setSelectedCard] = useState({});
   const [eraseCardAsk, setEraseCardAsk] = useState(false);
   const [imagePic, setImagePic] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
 
-  const [cards, setCard] = React.useState([]);
+  const [newPlaceTitle, setNewPlaceTitle] = React.useState("");
+  const [newPlaceLink, setNewPlaceLink] = React.useState("");
+
 
   const renderCard = () =>
     cards.map((item) => {
@@ -64,6 +67,17 @@ function App() {
   }, []);
 
   //! function Card
+  function handleAddPlaceSubmit (data){
+    api.handleAddCard(data).then((newCard)=>([newCard,...cards]))
+    ClosePopups()
+  }
+function handleNewPlaceTitleChance(e){
+  setNewPlaceTitle(e.target.value)
+}
+function handleNewPlaceLinkChance(e){
+  setNewPlaceLink(e.target.value)
+}
+
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
@@ -149,7 +163,6 @@ function App() {
     setSelectedCard("");
     setImagePic(false);
   }
-
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
@@ -178,42 +191,17 @@ function App() {
         </Popup>
 
         <Popup isOpen={isAddPlacePopupOpen}>
-          <PopupWithForm
-            name="add_card"
-            title="Nuevo lugar"
-            action="Save"
-            isOpen={isAddPlacePopupOpen}
-            onCLose={ClosePopups}
-          >
-            <label className="popup__field" htmlFor="popup-input-title">
-              <input
-                type="text"
-                name="title"
-                placeholder="Titulo"
-                id="popup-input-title"
-                className="popup__input"
-                minLength="2"
-                maxLength="30"
-                required
-              />
-              <span className="popup__error popup-input-title-error">
-                Por favor, rellena este campo.
-              </span>
-            </label>
-            <label className="popup__field" htmlFor="popup-input-link">
-              <input
-                type="url"
-                name="image-link"
-                placeholder="Imagen URL"
-                id="popup-input-link"
-                className="popup__input"
-                required
-              />
-              <span className="popup__error popup-input-link-error">
-                Por favor, introduce una dirección web.
-              </span>
-            </label>
-          </PopupWithForm>
+          <AddPlacePopup
+          isOpen={isAddPlacePopupOpen}
+          onCLose={ClosePopups}
+          onAddPlaceSubmit={handleAddPlaceSubmit}
+          onNewPlaceTitleChange={handleNewPlaceTitleChance}
+          onNewPlaceLinkChange={handleNewPlaceLinkChance}
+          setNewPlaceTitle={setNewPlaceTitle}
+          setNewPlaceLink={setNewPlaceLink}
+          newPlaceTitle={newPlaceTitle}
+          newPlaceLink={newPlaceLink}
+          />
         </Popup>
 
         <Popup isOpen={isEditAvatarPopupOpen}>
@@ -223,6 +211,7 @@ function App() {
             onUpdateAvatar={handleUpdateAvatar}
           />
         </Popup>
+
         <Popup isOpen={imagePic}>
           <ImagePopup
             cardInfo={selectedCard}
