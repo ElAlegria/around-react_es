@@ -1,5 +1,6 @@
 import React from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import heartImage from '../images/heart-image-white.png'
 
 function Card(props) {
   const currentUser = React.useContext(CurrentUserContext);
@@ -16,7 +17,7 @@ function Card(props) {
   }
 
   return (
-    <div className="card animation__join-back">
+    <div className="card animation__join-up">
       <button
         type="button"
         className={`card__delete-button ${
@@ -30,6 +31,10 @@ function Card(props) {
         src={link}
         alt={cardName}
         onClick={handleClickCard}
+      />
+      <img 
+      className={ `card__like ${isLiked ? 'card__like_on':''}`}
+      src={heartImage}
       />
       <div className="card__information animation__join-left">
         <h2 className="card__title">{cardName}</h2>
