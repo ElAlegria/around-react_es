@@ -2,6 +2,7 @@ import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
  function AddPlacePopup(props) {
+  
   const {newPlaceLink,newPlaceTitle} = props
 
   function handleSubmit(e){
@@ -10,6 +11,8 @@ import PopupWithForm from "./PopupWithForm";
     props.setNewPlaceLink('')
     props.setNewPlaceTitle('')
   }
+
+
   return (
     <PopupWithForm
       name="add_card"

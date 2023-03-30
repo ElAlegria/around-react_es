@@ -1,9 +1,11 @@
 import React from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import heartImage from '../images/heart-image-white.png'
+import heartWhite from '../images/heart-image-white.png'
 
 function Card(props) {
+
   const currentUser = React.useContext(CurrentUserContext);
+  
   const { cardOwnerId, link, cardName, cardLikes, onCardLike } =
     props;
   const isOwn = cardOwnerId === currentUser._id;
@@ -16,6 +18,7 @@ function Card(props) {
     props.onCardDelate(props)
   }
 
+  
   return (
     <div className="card animation__join-up">
       <button
@@ -34,7 +37,8 @@ function Card(props) {
       />
       <img 
       className={ `card__like ${isLiked ? 'card__like_on':''}`}
-      src={heartImage}
+      src={heartWhite}
+      alt={'heart like'}
       />
       <div className="card__information animation__join-left">
         <h2 className="card__title">{cardName}</h2>

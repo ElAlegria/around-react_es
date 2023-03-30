@@ -1,5 +1,7 @@
 function ImagePopup(props) {
-  const { isOpen, cardInfo, onClose } = props;
+
+  const { isOpen, info, onClose } = props;
+  
   return (
     <div
       className={`popup__container popup__container_role-image ${
@@ -9,11 +11,11 @@ function ImagePopup(props) {
     >
       <figure className="image__figure">
         <img
-          src={`${isOpen ? cardInfo.link : ""}`}
-          alt={cardInfo.cardName}
+          src={`${isOpen ? info.link : ""}`}
+          alt={info.cardName}
           className={"image__popup"}
         />
-        <figcaption className="popup__caption">{cardInfo.cardName}</figcaption>
+        <figcaption className="popup__caption">{info.cardName}</figcaption>
       </figure>
       <button
         type="button"

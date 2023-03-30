@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { api } from "../utils/api.js";
-import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
-import Header from "./Header.js";
-import Main from "./Main.js";
-import Footer from "./Footer.js";
-import Popup from "./Popup.js";
-import ImagePopup from "./ImagePopup.js";
-import EditProfilePopup from "./EditProfilePopup.js";
-import EditAvatarPopup from "./EditAvatarPopup.js";
-import Card from "./Card.js";
-import AddPlacePopup from "./AddPlacePopup.js";
+import { api } from "./utils/api.js";
+import { CurrentUserContext } from "./contexts/CurrentUserContext.js";
+import Header from "./components/Header.js";
+import Main from "./components/Main.js";
+import Footer from "./components/Footer.js";
+import Popup from "./components/Popup.js";
+import ImagePopup from "./components/ImagePopup.js";
+import EditProfilePopup from "./components/EditProfilePopup.js";
+import EditAvatarPopup from "./components/EditAvatarPopup.js";
+import Card from "./components/Card.js";
+import AddPlacePopup from "./components/AddPlacePopup.js";
 
 
 function App() {
@@ -217,7 +217,7 @@ function App() {
 
         <Popup isOpen={imagePic}>
           <ImagePopup
-            cardInfo={selectedCard}
+            info={selectedCard}
             isOpen={imagePic}
             onClose={ClosePopups}
           />
