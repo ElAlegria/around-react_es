@@ -6,10 +6,10 @@ function Card(props) {
 
   const currentUser = React.useContext(CurrentUserContext);
   
-  const { cardOwnerId, link, cardName, cardLikes, onCardLike } =
+  const { cardOwnerId, link, Name, likes, onCardLike } =
     props;
   const isOwn = cardOwnerId === currentUser._id;
-  const isLiked = cardLikes.some((i) => i._id === currentUser._id);
+  const isLiked = likes.some((i) => i._id === currentUser._id);
 
   function handleClickCard() {
     props.onCardClick(props);
@@ -32,7 +32,7 @@ function Card(props) {
       <img
         className="card__image"
         src={link}
-        alt={cardName}
+        alt={Name}
         onClick={handleClickCard}
       />
       <img 
@@ -41,7 +41,7 @@ function Card(props) {
       alt={'heart like'}
       />
       <div className="card__information animation__join-left">
-        <h2 className="card__title">{cardName}</h2>
+        <h2 className="card__title">{Name}</h2>
         <div className="card__like-container">
           <button
             type="button"
@@ -51,7 +51,7 @@ function Card(props) {
             aria-label="Like button"
             onClick={onCardLike}
           ></button>
-          <p className="card__like-counter">{cardLikes.length}</p>
+          <p className="card__like-counter">{likes.length}</p>
         </div>
       </div>
     </div>
