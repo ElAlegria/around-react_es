@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { api } from "./utils/api.js";
-import { CurrentUserContext } from "./contexts/CurrentUserContext.js";
-import Header from "./components/Header.js";
-import Main from "./components/Main.js";
-import Footer from "./components/Footer.js";
-import Popup from "./components/Popup.js";
-import ImagePopup from "./components/ImagePopup.js";
-import EditProfilePopup from "./components/EditProfilePopup.js";
-import EditAvatarPopup from "./components/EditAvatarPopup.js";
-import Card from "./components/Card.js";
-import AddPlacePopup from "./components/AddPlacePopup.js";
-
+import { api } from "../utils/api.js";
+import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
+import Header from "./Header.js";
+import Main from "./Main.js";
+import Footer from "./Footer.js";
+import Popup from "./Popup.js";
+import ImagePopup from "./ImagePopup.js";
+import EditProfilePopup from "./EditProfilePopup.js";
+import EditAvatarPopup from "./EditAvatarPopup.js";
+import Card from "./Card.js";
+// import delateCardPopup from './DelateCard.js'
+import AddPlacePopup from "./AddPlacePopup.js";
 
 function App() {
   //?Profile
@@ -30,9 +30,8 @@ function App() {
   const [newPlaceTitle, setNewPlaceTitle] = React.useState("");
   const [newPlaceLink, setNewPlaceLink] = React.useState("");
 
-  
   //?image Popup
-  const [eraseCardAsk, setEraseCardAsk] = useState(false);
+  // const [eraseCardAsk, setEraseCardAsk] = useState(false);
   const [imagePic, setImagePic] = useState(false);
 
   React.useEffect(() => {
@@ -154,7 +153,7 @@ function App() {
     setImagePic(true);
   }
   function handleEraseAsk(card) {
-    setEraseCardAsk(true);
+    // setEraseCardAsk(true);
     setSelectedCard(card);
   }
 
@@ -162,10 +161,11 @@ function App() {
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
-    setEraseCardAsk(false);
+    // setEraseCardAsk(false);
     setSelectedCard("");
     setImagePic(false);
   }
+
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
@@ -223,15 +223,10 @@ function App() {
           />
         </Popup>
         {/* <Popup isOpen={eraseCardAsk}>
-          <PopupWithForm
-            name="delete_card"
-            title="¿Estás seguro?"
-            action="Si"
-            onCLose={ClosePopups}
-          ></PopupWithForm>
-        </Popup> */}
-        {/* <Popup isOpen={eraseCardAsk}>
-          <delateCard />
+          <delateCardPopup 
+          onClose={""} 
+          eraseDelate={""} 
+          />
         </Popup> */}
       </CurrentUserContext.Provider>
     </div>

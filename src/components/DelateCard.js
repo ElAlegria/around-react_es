@@ -1,9 +1,7 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-
-function delateCard(props) {
-
+function delateCardPopup(props) {
   const { onClose, eraseDelate } = props;
 
   function handleSubmit(e) {
@@ -13,14 +11,13 @@ function delateCard(props) {
   }
   return (
     <PopupWithForm
-      name="delete_card"
-      title="¿Estás seguro?"
-      action="Si"
-      onSubmit={handleSubmit}
-      inputs={[]}
-      onCLose={onClose}
-    />
+    name="delete_card"
+    title="¿Estás seguro?"
+    action="Si"
+    onSubmit={handleSubmit}
+    onCLose={onClose}
+    ></PopupWithForm>
   );
 }
 
-export default delateCard;
+export default delateCardPopup;
