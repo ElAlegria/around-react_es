@@ -105,7 +105,7 @@ class Api {
     );
   }
 }
-export const api = new Api({
+export default new Api ({
   address: "https://around.nomoreparties.co/v1/web_es_cohort_04",
   headers: {
     authorization: "7b89216e-03f6-4244-8235-930eb464c231",

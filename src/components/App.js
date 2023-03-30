@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { api } from "../utils/api.js";
+import api  from "../utils/api.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 import Header from "./Header.js";
 import Main from "./Main.js";
