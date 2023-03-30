@@ -60,7 +60,7 @@ function App() {
           cardOwnerId={owner._id}
           link={link}
           Name={name}
-          cardLikes={likes}
+          likes={likes}
           onCardClick={handleClickCard}
           onCardDelate={handleDelateCard}
           onCardLike={() => {
