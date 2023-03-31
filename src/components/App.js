@@ -19,8 +19,8 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
-  const [userName, setUserName] = React.useState("");
-  const [userAbout, setUserAbout] = React.useState("");
+  // const [userName, setUserName] = React.useState("");
+  // const [userAbout, setUserAbout] = React.useState("");
   const [currentUser, setCurrentUser] = useState({});
 
   //?cards
@@ -125,11 +125,13 @@ function App() {
   }
 
   function handleUserNameChange(e) {
-    setUserName(e.target.value);
+    // setUserName(e.target.value);
+    setCurrentUser(Object.assign({}, currentUser, { name: e.target.value }));
   }
 
   function handleUserAboutChange(e) {
-    setUserAbout(e.target.value);
+    // setUserAbout(e.target.value);
+    setCurrentUser(Object.assign({}, currentUser, { about: e.target.value }));
   }
 
   //!Edit avatar
@@ -182,8 +184,8 @@ function App() {
             onUpdateUser={handleUpdateUser}
             onUserNameChange={handleUserNameChange}
             userDescriptionChange={handleUserAboutChange}
-            name={userName}
-            about={userAbout}
+            name={currentUser.name}
+            about={currentUser.about}
           />
         </Popup>
 
