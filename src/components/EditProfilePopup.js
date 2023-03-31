@@ -34,7 +34,7 @@ function EditProfilePopup(props) {
           minLength="2"
           maxLength="40"
           onChange={onUserNameChange}
-          value={currentUser.name}
+          value={currentUser.name || ''}
           required
         />
         <span className="popup__error popup-input-name-error">
@@ -51,7 +51,7 @@ function EditProfilePopup(props) {
           minLength="2"
           maxLength="200"
           onChange={userDescriptionChange }
-          value={currentUser.about}
+          value={currentUser.about || ''}
           required
         />
         <span className="popup__error popup-input-about-error">
