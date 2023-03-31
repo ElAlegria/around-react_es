@@ -28,13 +28,13 @@ function EditProfilePopup(props) {
         <input
           type="text"
           name="name"
-          placeholder={currentUser.name}
+          placeholder='Nombre'
           id="popup-input-name"
           className="popup__input popup__input_type_name"
           minLength="2"
           maxLength="40"
           onChange={onUserNameChange}
-          value={name || ''}
+          value={currentUser.name}
           required
         />
         <span className="popup__error popup-input-name-error">
@@ -45,13 +45,13 @@ function EditProfilePopup(props) {
         <input
           type="text"
           name="about"
-          placeholder={currentUser.about}
+          placeholder='Descripcion'
           id="popup-input-about"
           className="popup__input popup__input_type_about"
           minLength="2"
           maxLength="200"
-          onChange={userDescriptionChange}
-          value={about || ''}
+          onChange={userDescriptionChange }
+          value={currentUser.about}
           required
         />
         <span className="popup__error popup-input-about-error">
