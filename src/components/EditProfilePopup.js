@@ -1,8 +1,9 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function EditProfilePopup(props) {
-  
+  const currentUser = React.useContext(CurrentUserContext)
   const { onUpdateUser, onUserNameChange, userDescriptionChange, name, about } =
     props;
 
@@ -12,7 +13,6 @@ function EditProfilePopup(props) {
       name: name,
       about: about,
     });
-    // console.log('si funciona we')
   }
 
   return (
@@ -28,7 +28,7 @@ function EditProfilePopup(props) {
         <input
           type="text"
           name="name"
-          placeholder="Nombre"
+          placeholder={currentUser.name}
           id="popup-input-name"
           className="popup__input popup__input_type_name"
           minLength="2"
@@ -45,7 +45,7 @@ function EditProfilePopup(props) {
         <input
           type="text"
           name="about"
-          placeholder="Ocupación"
+          placeholder={currentUser.about}
           id="popup-input-about"
           className="popup__input popup__input_type_about"
           minLength="2"

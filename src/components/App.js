@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import api  from "../utils/api.js";
+import api from "../utils/api.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 import Header from "./Header.js";
 import Main from "./Main.js";
@@ -9,7 +9,7 @@ import ImagePopup from "./ImagePopup.js";
 import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
 import Card from "./Card.js";
-// import delateCardPopup from './DelateCard.js'
+import DelateCardPopup from "./DelateCard.js";
 import AddPlacePopup from "./AddPlacePopup.js";
 
 function App() {
@@ -31,14 +31,12 @@ function App() {
   const [newPlaceLink, setNewPlaceLink] = React.useState("");
 
   //?image Popup
-  // const [eraseCardAsk, setEraseCardAsk] = useState(false);
+  const [eraseCardAsk, setEraseCardAsk] = useState(false);
   const [imagePic, setImagePic] = useState(false);
 
   React.useEffect(() => {
     api.getUserInfo().then((info) => {
       setCurrentUser(info);
-      setUserName(info.name);
-      setUserAbout(info.about);
     });
   }, []);
 
@@ -61,7 +59,7 @@ function App() {
           Name={name}
           likes={likes}
           onCardClick={handleClickCard}
-          onCardDelate={handleDelateCard}
+          onCardDelate={handleEraseAsk}
           onCardLike={() => {
             handleCardLike(item);
           }}
@@ -121,8 +119,6 @@ function App() {
     api.setUserInfo(data).then(() => {
       api.getUserInfo().then((info) => {
         setCurrentUser(info);
-        setUserName(info.name);
-        setUserAbout(info.about);
       });
     });
     ClosePopups();
@@ -153,7 +149,7 @@ function App() {
     setImagePic(true);
   }
   function handleEraseAsk(card) {
-    // setEraseCardAsk(true);
+    setEraseCardAsk(true);
     setSelectedCard(card);
   }
 
@@ -161,7 +157,7 @@ function App() {
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
-    // setEraseCardAsk(false);
+    setEraseCardAsk(false);
     setSelectedCard("");
     setImagePic(false);
   }
@@ -179,21 +175,19 @@ function App() {
           rendererCard={renderCard}
         />
         <Footer />
-        <Popup isOpen={isEditProfilePopupOpen}>
+        <Popup isOpen={isEditProfilePopupOpen} onClose={ClosePopups}>
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
             onCLose={ClosePopups}
             onUpdateUser={handleUpdateUser}
             onUserNameChange={handleUserNameChange}
             userDescriptionChange={handleUserAboutChange}
-            setUserName={setUserName}
-            setUserAbout={setUserAbout}
             name={userName}
             about={userAbout}
           />
         </Popup>
 
-        <Popup isOpen={isAddPlacePopupOpen}>
+        <Popup isOpen={isAddPlacePopupOpen} onClose={ClosePopups}>
           <AddPlacePopup
             isOpen={isAddPlacePopupOpen}
             onCLose={ClosePopups}
@@ -207,7 +201,7 @@ function App() {
           />
         </Popup>
 
-        <Popup isOpen={isEditAvatarPopupOpen}>
+        <Popup isOpen={isEditAvatarPopupOpen} onClose={ClosePopups}>
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onCLose={ClosePopups}
@@ -215,19 +209,21 @@ function App() {
           />
         </Popup>
 
-        <Popup isOpen={imagePic}>
+        <Popup isOpen={imagePic} onClose={ClosePopups}>
           <ImagePopup
             info={selectedCard}
             isOpen={imagePic}
             onClose={ClosePopups}
           />
         </Popup>
-        {/* <Popup isOpen={eraseCardAsk}>
-          <delateCardPopup 
-          onClose={""} 
-          eraseDelate={""} 
+        <Popup isOpen={eraseCardAsk} onClose={ClosePopups}>
+          <DelateCardPopup
+            isOpen={eraseCardAsk}
+            onClose={ClosePopups}
+            eraseDelate={handleDelateCard}
+            card={selectedCard}
           />
-        </Popup> */}
+        </Popup>
       </CurrentUserContext.Provider>
     </div>
   );
