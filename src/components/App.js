@@ -184,8 +184,6 @@ function App() {
             onUpdateUser={handleUpdateUser}
             onUserNameChange={handleUserNameChange}
             userDescriptionChange={handleUserAboutChange}
-            name={currentUser.name}
-            about={currentUser.about}
           />
         </Popup>
 

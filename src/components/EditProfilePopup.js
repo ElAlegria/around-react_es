@@ -3,15 +3,14 @@ import PopupWithForm from "./PopupWithForm";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function EditProfilePopup(props) {
-  const currentUser = React.useContext(CurrentUserContext)
-  const { onUpdateUser, onUserNameChange, userDescriptionChange, name, about } =
-    props;
+  const currentUser = React.useContext(CurrentUserContext);
+  const { onUpdateUser, onUserNameChange, userDescriptionChange } = props;
 
   function handleSubmit(e) {
     e.preventDefault();
     onUpdateUser({
-      name: name,
-      about: about,
+      name: currentUser.name,
+      about: currentUser.about,
     });
   }
 
@@ -28,7 +27,7 @@ function EditProfilePopup(props) {
         <input
           type="text"
           name="name"
-          placeholder='Nombre'
+          placeholder="Nombre"
           id="popup-input-name"
           className="popup__input popup__input_type_name"
           minLength="2"
@@ -45,12 +44,12 @@ function EditProfilePopup(props) {
         <input
           type="text"
           name="about"
-          placeholder='Descripcion'
+          placeholder="Descripcion"
           id="popup-input-about"
           className="popup__input popup__input_type_about"
           minLength="2"
           maxLength="200"
-          onChange={userDescriptionChange }
+          onChange={userDescriptionChange}
           value={currentUser.about || ''}
           required
         />
